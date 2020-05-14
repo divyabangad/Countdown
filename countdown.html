@@ -1,0 +1,151 @@
+<html>
+<head>
+	<title>
+		Countdown
+	</title>
+	<style>
+
+        		body
+        		{
+            			background:#f6f6f6;
+            			font-family: 'Indie Flower', cursive;
+        		}
+  
+        		#container
+        		{
+            			position:absolute;
+            			transform:translateX(-30%) translateY(-0%);
+            			text-align:center;
+            			margin-left:700px;
+            			margin-top:250px;
+            			background-color:gray;
+            			margin-right:30px;
+            			box-shadow:0 0 3px 5px #ccc;
+            			padding:10px;
+            			border:1px solid #999;
+        		}
+  
+        		.info
+        		{
+            			font-size:80px;
+            			text-align:center;
+        		}
+        
+        		button
+        		{
+            			outline:0px;
+            			background-color:#0b1238;
+            			color:#d6d8e4;
+            			border-radius:10px;
+        		}
+        
+        		input
+        		{
+            			height:30px;
+            			border-radius:10px;
+            			outline:0px;
+            			font-family:Indie Flower', cursive;
+        		}
+        
+        		input:hover
+        		{
+            			background-color:#e1dee4;
+            			color:black;
+            			outline:0px;
+        		}
+    	</style>
+        
+    	<script>
+        		function countdown()
+        		{
+			var y = document.getElementById("year");
+            			var m = document.getElementById("month");
+            			var d = document.getElementById("date");
+
+            			var now = new Date();
+            			var eventDate = new Date(y.value,m.value,d.value);
+
+            			var currentTime = now.getTime();
+            			var eventTime = eventDate.getTime();
+
+            			remtime = eventTime - currentTime;
+
+            			var s = Math.floor(remtime/1000);
+            			var min = Math.floor(s/60);
+            			var hours = Math.floor(min/60);
+            			var days = Math.floor(hours/24);
+
+			days = days - 31;
+            			hours = hours % 24;
+            			s = s % 60;
+            			min = min % 60;
+
+            			hours = (hours<10)? "0" + hours : hours ;
+            			min = (min<10)? "0" + min : min ;
+            			s = (s<10)? "0" + s : s ;
+
+            			document.getElementById("day").innerHTML=days;
+            			document.getElementById("hour").innerHTML=hours;
+            			document.getElementById("minutes").innerHTML=min;
+            			document.getElementById("seconds").innerHTML=s;
+
+            			setTimeout(countdown,1000);
+
+            			var hexcolor="#"+hours+min+s;
+
+            			document.body.style.backgroundColor=hexcolor;
+        		}
+    	</script>
+</head>
+	<body>
+        		<table id="container">
+            		<tr class="info">
+            			<td colspan="4">
+                			<center>Countdown</center>
+            			</td>
+
+            			<tr>
+                			<td id="day"></td>
+                			<td id="hour"></td>
+                			<td id="minutes"></td>
+                			<td id="seconds"></td>
+            			</tr>
+
+            			<tr>
+                			<td><span>Days</span>   </td>
+                			<td><span>Hours</span>   </td>
+                			<td><span>Minutes  </span> </td>
+                			<td><span>Seconds </span>  </td>
+            			</tr>
+        		</table>
+
+		<div style = "position:relative; left:680px; top:30px";>
+        			<label for="year">Year</label>
+		</div>
+
+		<div style = "position:relative; left:730px; top:5px";>
+			<input type="number" id="year"></input>
+		</div>
+
+		<div style = "position:relative; left:680px; top:30px";>
+        			<label for="month">Month</label>
+		</div>
+
+		<div style = "position:relative; left:730px; top:5px";>
+			<input type="number" id="month"></input>
+		</div>
+
+		<div style = "position:relative; left:680px; top:30px";>
+        			<label for="date">Date</label>
+		</div>
+
+		<div style = "position:relative; left:730px; top:5px";>
+			<input type="number" id="date"></input>
+		</div>
+
+		<div style = "position:relative; left:740px; top:30px";>
+        			<button type="button" id="Click" onclick="countdown()">Click Here</button>
+		</div>
+		
+    	</body>
+</html>
